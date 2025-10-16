@@ -24,7 +24,7 @@ fn bin_dataset(dataset: Vec<u64>, range: u64) -> BinResult {
 
 
     let mut bins: Vec<u64> = Vec::new();
-    let bounds = get_bounds(range, dataset.len() as u64);
+    let bounds = get_bounds(range, *dataset.iter().max().unwrap());
 
     for bound in &bounds {
         bins.push(bin_bounds(&dataset, bound.lower, bound.upper));
@@ -34,9 +34,9 @@ fn bin_dataset(dataset: Vec<u64>, range: u64) -> BinResult {
 
 }
 
-fn get_bounds(range: u64, size: u64) -> Vec<Bounds> {
+fn get_bounds(range: u64, max: u64) -> Vec<Bounds> {
     let mut vec_bounds: Vec<Bounds> = Vec::new();
-    for i in (0..size).step_by(range as usize) {
+    for i in (0..max).step_by(range as usize) {
         vec_bounds.push(Bounds { lower: i, upper: i + range });
     }
     vec_bounds
@@ -82,7 +82,7 @@ fn primes_to(n: u64) -> Vec<u64> {
 
 fn main() {
 
-    let primes_max = 10000000;
+    let primes_max = 10000;
 
     let primes: Vec<u64> = primes_to(primes_max);
 
@@ -94,7 +94,7 @@ fn main() {
     println!("Number of primes: {}", &primes.len());
 
     let bin_result = bin_dataset(primes, 1000);
-    print_bins(&bin_result);
+    // print_bins(&bin_result);
     print_bin_sizes(&bin_result);
 
 }
