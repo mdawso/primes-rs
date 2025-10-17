@@ -43,6 +43,6 @@ pub fn get_bounds(range: u64, max: u64) -> Vec<Bounds> {
 
 pub fn print_bin_sizes(bin_result: &BinResult) {
     for (i, bound) in bin_result.bounds.iter().enumerate() {
-        println!("{}-{}:{}", bound.lower, bound.upper, bin_result.bins[i]);
+        println!("{} - {}: {}", bound.lower, bound.upper, bin_result.bins[i]);
     }
 }

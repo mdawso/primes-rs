@@ -6,7 +6,7 @@ mod bins;
 
 fn main() {
     
-    let primes_max = 1000000000;
+    let primes_max = 1000000;
     let range = primes_max / 10; // range = bin size
 
     println!("Started calculating primes");
