@@ -1,16 +1,25 @@
 pub fn primes_to(n: u64) -> Vec<u64> {
-    let mut primes: Vec<u64> = Vec::new();
+    if n < 2 {
+        return Vec::new();
+    }
 
-    for i in 2..=n {
-        if (2..=(
-                (i as f64).sqrt() as u64)
-                ).all
-                (
-                    |j: u64| i % j != 0
-                ) {
-            primes.push(i);
+    let mut is_prime = vec![true; (n + 1) as usize];
+    is_prime[0] = false;
+    is_prime[1] = false;
+
+    let limit = (n as f64).sqrt() as u64;
+    for i in 2..=limit {
+        if is_prime[i as usize] {
+            let mut j = i * i;
+            while j <= n {
+                is_prime[j as usize] = false;
+                j += i;
+            }
         }
     }
 
-    primes
+    is_prime.iter()
+        .enumerate()
+        .filter_map(|(idx, &prime)| if prime { Some(idx as u64) } else { None })
+        .collect()
 }

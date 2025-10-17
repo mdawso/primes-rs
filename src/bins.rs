@@ -1,12 +1,12 @@
 pub struct Bounds {
-    lower: u64,
-    upper: u64
+    pub lower: u64,
+    pub upper: u64
 }
 
 
 pub struct BinResult {
-    bins: Vec<u64>,
-    bounds: Vec<Bounds>
+    pub bins: Vec<u64>,
+    pub bounds: Vec<Bounds>
 }
 
 fn bin_bounds(dataset: &Vec<u64>, lower: u64, upper: u64) -> u64 {
@@ -19,7 +19,7 @@ fn bin_bounds(dataset: &Vec<u64>, lower: u64, upper: u64) -> u64 {
     count
 }
 
-pub fn bin_dataset(dataset: Vec<u64>, range: u64) -> BinResult {
+pub fn bin_dataset(dataset: &Vec<u64>, range: u64) -> BinResult {
 
 
     let mut bins: Vec<u64> = Vec::new();
